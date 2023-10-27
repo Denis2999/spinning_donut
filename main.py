@@ -10,17 +10,17 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 WHITE, BLACK = (255, 255, 255), (0, 0, 0)
 font = pygame.font.SysFont("arial", 10, bold=True)
 
-r1 = 80 #radius of 2D circle
-r2 = 150 #radius of the donut/torus
+r1 = 48 #radius of 2D circle
+r2 = 96 #radius of the donut/torus
 A, B = 1, 1 #rotation angles x- & z-axis
-K2 = 5000 #distance from viewer to donut
+K2 = 4096 #distance from viewer to donut
 K1 = WIDTH * K2 * 3 / (8 * (r1 + r2)) #distance viewer to screen
 
 x_offset = WIDTH / 2
 y_offset = HEIGHT / 2
 
-x_space = 10 #width of character
-y_space = 12 #height of character
+x_space = 4 #width of character
+y_space = 8 #height of character
 columns = int(WIDTH / x_space)
 rows = int(HEIGHT / y_space)
 
@@ -48,13 +48,13 @@ while True:
         col2 = [0 for i in range(columns)]
         zbuffer.append(col2)
 
-    for T in range(0, 628, 15):
+    for T in range(0, 1024, 8):
         cosT, sinT = math.cos(T / 100), math.sin(T / 100)
     
         x2 = r2 + r1 * cosT #x coordinate of 2D circle
         y2 = r1 * sinT #y coordinate of 2D circle
         
-        for P in range(0, 628, 15):
+        for P in range(0, 1024, 8):
             cosP, sinP = math.cos(P / 100), math.sin(P / 100)
             
             x = x2 * (cosB * cosP + sinA * sinB *sinP) - y2 * cosA * sinB
@@ -82,7 +82,7 @@ while True:
         for b in range(columns):
             draw(b * x_space, a * y_space, output[a][b])
 
-    #prevent A and B to go up yo infinity
+    #prevent A and B to go up to infinity
     if A > 6.283 and A < 6.2831:
         A = 0
         B = 0

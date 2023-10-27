@@ -11,8 +11,8 @@ WHITE, BLACK = (255, 255, 255), (0, 0, 0)
 font = pygame.font.SysFont("arial", 10, bold=True)
 
 radius = 150 #radius of the circle
-x_offset = WIDTH / 2
-y_offset = HEIGHT / 2
+x_offset = WIDTH / 2 #half the width of the window
+y_offset = HEIGHT / 2 #half the height of the window
 
 def draw(x, y):
     pygame.draw.circle(screen, WHITE, (x + x_offset, y + y_offset), 1)
