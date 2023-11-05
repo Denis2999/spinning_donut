@@ -31,6 +31,8 @@ def draw(x, y, char):
     text = font.render(char, True, WHITE)
     screen.blit(text, (x, y))
 
+pygame.display.set_caption("Spinning Donut")
+
 while True:
     screen.fill((BLACK)) #erase previous donut
     cosB, sinB = math.cos(B), math.sin(B)

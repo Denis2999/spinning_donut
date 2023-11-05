@@ -1,5 +1,5 @@
 import pygame
-from pygame.locals import *
+from pygame.locals import * #bad practice. Should be changed in future
 
 from OpenGL.GL import * #bad practice. Should be changed in future
 from OpenGL.GLU import * #bad practice. Should be changed in future
@@ -27,19 +27,20 @@ def cube():
 pygame.init()
 
 pygame.display.set_mode(display, DOUBLEBUF|OPENGL)
-pygame.display.set_caption("Sample OpenGL")
+pygame.display.set_caption("Spinning Cube")
 
 gluPerspective(45, (display[0] / display[1]), 0.1, 50.0)
-glTranslatef(0, 0, 0-5)
+glTranslatef(0, 0, 0 - 5)
 
-while True:
-    for event in pygame.event.get(): #close the window when the button is pressed
-        if event.type == pygame.QUIT:
-            pygame.quit()
-    
+while True:    
     glRotatef(1, 1, 1, 1)
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
     cube()
+    
+    for event in pygame.event.get(): #close the window when the button is pressed
+        if event.type == pygame.QUIT:
+            pygame.quit()
+
     # update display
     pygame.display.flip()
     # update loop sleep
